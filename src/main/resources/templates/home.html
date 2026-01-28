@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+
+        .container {
+            background: #1f1f2e;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        form {
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-cadastro {
+            background: #ff6b6b;
+            color: #fff;
+        }
+
+        .btn-cadastro:hover {
+            background: #ff8787;
+        }
+
+        .btn-login {
+            background: #4ecdc4;
+            color: #fff;
+        }
+
+        .btn-login:hover {
+            background: #6ee6db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo!</h1>
+
+        <!-- Botão Cadastro -->
+        <form th:action="@{/cadastro}" method="get">
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+        </form>
+
+        <!-- Botão Login -->
+        <form th:action="@{/login}" method="get">
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+    </div>
+</body>
+</html>
