@@ -26,13 +26,13 @@ public class UsuarioController {
 
     // Endpoints
     @GetMapping("/")
-    public String retornarPaginaInicial() {
+    public String exibirIndex() {
         
         return "index.html";
     }
 
     @GetMapping("/cadastro")
-    public String retornarCadastro(Model model) {
+    public String exibirCadastro(Model model) {
         Map<String,String> atributoErro = new HashMap<>();  
         model.addAttribute("erros", atributoErro);
 
@@ -40,8 +40,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastro")
-    public String salvarUsuario(Usuario usuario, Model model) {
-        Map<String,String> atributoErro = usuarioService.salvarUsuario(usuario);  
+    public String salvar(Usuario usuario, Model model) {
+        Map<String,String> atributoErro = usuarioService.salvar(usuario);  
         if(!atributoErro.isEmpty()) {
             model.addAttribute("erros", atributoErro);
             model.addAttribute("username", usuario.getUsername());

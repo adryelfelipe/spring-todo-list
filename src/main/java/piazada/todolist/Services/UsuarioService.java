@@ -10,7 +10,7 @@ import piazada.todolist.models.Usuario;
 
 @Service
 public class UsuarioService {
-    public Map<String, String> salvarUsuario(Usuario usuario) {
+    public Map<String, String> salvar(Usuario usuario) {
         return new HashMap<>();
     }
 
