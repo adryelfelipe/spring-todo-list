@@ -55,7 +55,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/login")
-    public String retornarLogin(Model model){
+    public String exibirLogin(Model model){
         Map<String,String> atributoErro = new HashMap<>();  
         model.addAttribute("erros", atributoErro);
         
