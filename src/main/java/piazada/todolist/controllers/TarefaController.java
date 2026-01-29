@@ -1,0 +1,68 @@
+package piazada.todolist.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import piazada.todolist.models.Tarefa;
+import piazada.todolist.services.TarefaService;
+import piazada.todolist.session.UsuarioSession;
+
+@Controller
+public class TarefaController {
+    // Atributos
+    private TarefaService tarefaService;
+    private UsuarioSession usuarioSession;
+
+    // Construtor
+    public TarefaController(TarefaService tarefaService, UsuarioSession usuarioSession) {
+        this.tarefaService = tarefaService;
+        this.usuarioSession = usuarioSession;
+    }
+
+    // Endpoints
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        if(usuarioSession.getUsername() == null) {
+
+            return("redirect:/");
+        } else {
+            Map<String, String> atributoErro = new HashMap<>();
+            model.addAttribute("erros", atributoErro);
+            model.addAttribute("tarefas", tarefaService.getTarefas());
+
+            return "dashboard.html";
+        }
+    }
+
+    @PostMapping("/salvar")
+    public String salvar(Tarefa tarefa, Model model) {
+        if(usuarioSession.getUsername() == null) {
+
+            return("redirect:/");
+        } else {
+            Map<String, String> atributoErro = tarefaService.salvar(tarefa);
+            model.addAttribute("erros", atributoErro);
+            model.addAttribute("tarefas", tarefaService.getTarefas());
+
+            return "dashboard.html";
+        }
+    }
+
+    @PostMapping("/concluirTarefa")
+    public String concluirTarefa(@RequestParam Long id) {
+        if(usuarioSession.getUsername() == null) {
+
+            return("redirect:/");
+        } else {
+            tarefaService.concluirTarefa(id);
+
+            return("redirect:/dashboard");
+        }
+    }
+}
