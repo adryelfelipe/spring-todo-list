@@ -85,7 +85,7 @@
             <span th:text="${tarefa.titulo}"></span>
 
             <form th:if="${!tarefa.concluida}"
-                  th:action="@{/concluirTarefa}"
+                  th:action="@{/concluir}"
                   method="post">
 
                 <input type="hidden" name="id" th:value="${tarefa.id}">

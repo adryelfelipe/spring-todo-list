@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import piazada.todolist.models.Tarefa;
 
 import org.springframework.stereotype.Service;
+
+import piazada.todolist.models.Tarefa;
 
 @Service
 public class TarefaService {
@@ -24,7 +25,7 @@ public class TarefaService {
         return new HashMap<>();
     }
 
-     public void concluirTarefa(long id) {
+     public void concluir(long id) {
         for(Tarefa tarefa : tarefas) {
             if(tarefa.getId() == id) {
                 tarefa.concluir();

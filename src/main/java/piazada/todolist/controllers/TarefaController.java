@@ -27,7 +27,7 @@ public class TarefaController {
 
     // Endpoints
     @GetMapping("/dashboard")
-    public String dashboard(Model model) {
+    public String exibirDashboard(Model model) {
         if(usuarioSession.getUsername() == null) {
 
             return("redirect:/");
@@ -54,13 +54,13 @@ public class TarefaController {
         }
     }
 
-    @PostMapping("/concluirTarefa")
-    public String concluirTarefa(@RequestParam Long id) {
+    @PostMapping("/concluir")
+    public String concluir(@RequestParam Long id) {
         if(usuarioSession.getUsername() == null) {
 
             return("redirect:/");
         } else {
-            tarefaService.concluirTarefa(id);
+            tarefaService.concluir(id);
 
             return("redirect:/dashboard");
         }
