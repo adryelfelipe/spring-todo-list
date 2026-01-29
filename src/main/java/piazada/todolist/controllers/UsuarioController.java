@@ -8,25 +8,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import piazada.todolist.Services.UsuarioService;
 import piazada.todolist.models.Usuario;
-
-
+import piazada.todolist.services.UsuarioService;
+import piazada.todolist.session.UsuarioSession;
 
 @Controller
 public class UsuarioController {
     // Atributos
     private UsuarioService usuarioService;
+    private UsuarioSession usuarioSession;
 
     // Construtor
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService, UsuarioSession usuarioSession) {
         this.usuarioService = usuarioService;
+        this.usuarioSession = usuarioSession;
     }
 
     // Endpoints
     @GetMapping("/")
-    public String retornarHome() {
-        return "home.html";
+    public String retornarPaginaInicial() {
+        
+        return "index.html";
     }
 
     @GetMapping("/cadastro")
@@ -49,6 +51,28 @@ public class UsuarioController {
         } else {
 
             return "redirect:/";
+        }
+    }
+
+    @GetMapping("/login")
+    public String retornarLogin(Model model){
+        Map<String,String> atributoErro = new HashMap<>();  
+        model.addAttribute("erros", atributoErro);
+        
+        return "login.html";
+    }
+
+    @PostMapping("/login")
+    public String realizarLogin(Usuario usuario, Model model) {
+        Map<String,String> atributoErro = usuarioService.realizarLogin(usuario);
+        if(!atributoErro.isEmpty()) {
+            model.addAttribute("erros", atributoErro);
+
+            return "login.html";
+        } else {
+            usuarioSession.setUsername(usuario.getSenha());
+
+            return "redirect:/dashboard";
         }
     }
 }

@@ -9,10 +9,7 @@ public class Usuario {
     public Usuario(String username, String senha) {
         this.username = username;
         this.senha = senha;
-        System.out.println(this.username);
-        System.out.println(this.senha);
     }
-
 
     // Getters e Setters
     public String getUsername() {

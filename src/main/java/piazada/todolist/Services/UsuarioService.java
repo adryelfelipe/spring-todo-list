@@ -1,4 +1,5 @@
-package piazada.todolist.Services;
+package piazada.todolist.services;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,10 @@ import piazada.todolist.models.Usuario;
 @Service
 public class UsuarioService {
     public Map<String, String> salvarUsuario(Usuario usuario) {
+        return new HashMap<>();
+    }
+
+    public Map<String, String> realizarLogin(Usuario usuario) {
         return new HashMap<>();
     }
 }
