@@ -16,16 +16,16 @@ public class LogAspect {
     @Around("@annotation(ParaLogar)")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
         String nomeMetodo = joinPoint.getSignature().getName();
-        String nomeClasse = joinPoint.getClass().getName();
-        logger.debug("Inicializando o método {}.{}", nomeClasse, nomeMetodo);
+        String nomeClasse = joinPoint.getTarget().getClass().getName();
+        logger.debug("Inicializando o método {}.{}()", nomeClasse, nomeMetodo);
 
         try {
             Object retorno = joinPoint.proceed();
-            logger.debug("Finalizando o método {},{}", nomeClasse, nomeMetodo);
+            logger.debug("Finalizando o método {}.{}()", nomeClasse, nomeMetodo);
 
             return retorno;
         } catch (Throwable e) {
-            logger.debug("Erro no método {}.{}",nomeClasse, nomeMetodo);
+            logger.debug("Erro no método {}.{}()",nomeClasse, nomeMetodo);
 
             throw e;
         }
