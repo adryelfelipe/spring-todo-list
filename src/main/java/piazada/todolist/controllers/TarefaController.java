@@ -7,10 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import piazada.todolist.aop.ParaLogar;
-import piazada.todolist.models.Tarefa;
+import piazada.todolist.dtos.CadastroTarefaRequest;
+import piazada.todolist.dtos.ConcluirTarefaRequest;
 import piazada.todolist.services.TarefaService;
 import piazada.todolist.session.UsuarioSession;
 
@@ -43,12 +42,12 @@ public class TarefaController {
 
     @ParaLogar
     @PostMapping("/salvar")
-    public String salvar(Tarefa tarefa, Model model) {
+    public String salvar(CadastroTarefaRequest request, Model model) {
         if(usuarioSession.getUsername() == null) {
 
             return("redirect:/");
         } else {
-            Map<String, String> atributoErro = tarefaService.salvar(tarefa);
+            Map<String, String> atributoErro = tarefaService.salvar(request);
             model.addAttribute("erros", atributoErro);
             model.addAttribute("tarefas", tarefaService.getTarefas());
 
@@ -58,12 +57,12 @@ public class TarefaController {
 
     @ParaLogar
     @PostMapping("/concluir")
-    public String concluir(@RequestParam Long id) {
+    public String concluir(ConcluirTarefaRequest request) {
         if(usuarioSession.getUsername() == null) {
 
             return("redirect:/");
         } else {
-            tarefaService.concluir(id);
+            tarefaService.concluir(request);
 
             return("redirect:/dashboard");
         }

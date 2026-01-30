@@ -2,16 +2,13 @@ package piazada.todolist.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import piazada.todolist.aop.ParaLogar;
 import piazada.todolist.dtos.CadastroUsuarioRequest;
 import piazada.todolist.dtos.LoginUsuarioRequest;
-import piazada.todolist.models.Usuario;
 import piazada.todolist.services.UsuarioService;
 import piazada.todolist.session.UsuarioSession;
 

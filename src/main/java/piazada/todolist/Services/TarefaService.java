@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import piazada.todolist.aop.ParaLogar;
+import piazada.todolist.dtos.CadastroTarefaRequest;
+import piazada.todolist.dtos.ConcluirTarefaRequest;
 import piazada.todolist.models.Tarefa;
 
 @Service
@@ -23,16 +25,16 @@ public class TarefaService {
 
     // Metodos
     @ParaLogar
-    public Map<String, String> salvar(Tarefa tarefa) {
-
+    public Map<String, String> salvar(CadastroTarefaRequest request) {
+        Tarefa tarefa = new Tarefa(request.nome());
         tarefas.add(tarefa);
         return new HashMap<>();
     }
 
     @ParaLogar
-     public void concluir(long id) {
+     public void concluir(ConcluirTarefaRequest request) {
         for(Tarefa tarefa : tarefas) {
-            if(tarefa.getId() == id) {
+            if(tarefa.getId() == request.id()) {
                 tarefa.concluir();
             }
         }
