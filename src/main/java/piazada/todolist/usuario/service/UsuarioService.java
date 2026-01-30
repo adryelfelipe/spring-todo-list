@@ -1,4 +1,4 @@
-package piazada.todolist.services;
+package piazada.todolist.usuario.service;
 
 
 import java.util.HashMap;
@@ -7,9 +7,9 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import piazada.todolist.aop.ParaLogar;
-import piazada.todolist.dtos.CadastroUsuarioRequest;
-import piazada.todolist.dtos.LoginUsuarioRequest;
-import piazada.todolist.models.Usuario;
+import piazada.todolist.usuario.dtos.CadastroUsuarioRequest;
+import piazada.todolist.usuario.dtos.LoginUsuarioRequest;
+import piazada.todolist.usuario.model.Usuario;
 
 @Service
 public class UsuarioService {

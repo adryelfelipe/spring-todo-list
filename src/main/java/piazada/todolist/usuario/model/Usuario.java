@@ -1,4 +1,4 @@
-package piazada.todolist.models;
+package piazada.todolist.usuario.model;
 
 import piazada.todolist.Email;
 

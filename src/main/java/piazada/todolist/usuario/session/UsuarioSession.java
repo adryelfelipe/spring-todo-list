@@ -1,4 +1,4 @@
-package piazada.todolist.session;
+package piazada.todolist.usuario.session;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;

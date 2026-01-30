@@ -1,4 +1,4 @@
-package piazada.todolist.models;
+package piazada.todolist.tarefa.model;
 
 public class Tarefa {
     // Atributos

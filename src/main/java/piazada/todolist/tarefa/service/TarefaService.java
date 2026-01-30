@@ -1,4 +1,4 @@
-package piazada.todolist.services;
+package piazada.todolist.tarefa.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +8,9 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import piazada.todolist.aop.ParaLogar;
-import piazada.todolist.dtos.CadastroTarefaRequest;
-import piazada.todolist.dtos.ConcluirTarefaRequest;
-import piazada.todolist.models.Tarefa;
+import piazada.todolist.tarefa.dtos.CadastroTarefaRequest;
+import piazada.todolist.tarefa.dtos.ConcluirTarefaRequest;
+import piazada.todolist.tarefa.model.Tarefa;
 
 @Service
 public class TarefaService {
@@ -26,7 +26,7 @@ public class TarefaService {
     // Metodos
     @ParaLogar
     public Map<String, String> salvar(CadastroTarefaRequest request) {
-        Tarefa tarefa = new Tarefa(request.nome());
+        Tarefa tarefa = new Tarefa(request.titulo());
         tarefas.add(tarefa);
         return new HashMap<>();
     }

@@ -1,4 +1,4 @@
-package piazada.todolist.controllers;
+package piazada.todolist.usuario.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,10 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import piazada.todolist.aop.ParaLogar;
-import piazada.todolist.dtos.CadastroUsuarioRequest;
-import piazada.todolist.dtos.LoginUsuarioRequest;
-import piazada.todolist.services.UsuarioService;
-import piazada.todolist.session.UsuarioSession;
+import piazada.todolist.usuario.dtos.CadastroUsuarioRequest;
+import piazada.todolist.usuario.dtos.LoginUsuarioRequest;
+import piazada.todolist.usuario.service.UsuarioService;
+import piazada.todolist.usuario.session.UsuarioSession;
 
 @Controller
 public class UsuarioController {

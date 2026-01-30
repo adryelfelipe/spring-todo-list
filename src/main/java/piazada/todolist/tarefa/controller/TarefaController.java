@@ -1,4 +1,4 @@
-package piazada.todolist.controllers;
+package piazada.todolist.tarefa.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import piazada.todolist.aop.ParaLogar;
-import piazada.todolist.dtos.CadastroTarefaRequest;
-import piazada.todolist.dtos.ConcluirTarefaRequest;
-import piazada.todolist.services.TarefaService;
-import piazada.todolist.session.UsuarioSession;
+import piazada.todolist.tarefa.dtos.CadastroTarefaRequest;
+import piazada.todolist.tarefa.dtos.ConcluirTarefaRequest;
+import piazada.todolist.tarefa.service.TarefaService;
+import piazada.todolist.usuario.session.UsuarioSession;
 
 @Controller
 public class TarefaController {
