@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import piazada.todolist.aop.ParaLogar;
 import piazada.todolist.models.Tarefa;
 
 @Service
@@ -16,15 +17,19 @@ public class TarefaService {
 
     // Getters
     public List<Tarefa> getTarefas() {
+        
         return tarefas;
     }
 
     // Metodos
+    @ParaLogar
     public Map<String, String> salvar(Tarefa tarefa) {
+
         tarefas.add(tarefa);
         return new HashMap<>();
     }
 
+    @ParaLogar
      public void concluir(long id) {
         for(Tarefa tarefa : tarefas) {
             if(tarefa.getId() == id) {

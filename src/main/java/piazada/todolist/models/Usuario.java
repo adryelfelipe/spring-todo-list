@@ -1,5 +1,7 @@
 package piazada.todolist.models;
 
+import piazada.todolist.Email;
+
 public class Usuario {
     // Atributos
     private String username;

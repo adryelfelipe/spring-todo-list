@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import piazada.todolist.aop.ParaLogar;
+import piazada.todolist.dtos.CadastroUsuarioRequest;
+import piazada.todolist.dtos.LoginUsuarioRequest;
 import piazada.todolist.models.Usuario;
 import piazada.todolist.services.UsuarioService;
 import piazada.todolist.session.UsuarioSession;
@@ -39,13 +42,14 @@ public class UsuarioController {
         return "cadastro.html";
     }
 
+    @ParaLogar
     @PostMapping("/cadastro")
-    public String salvar(Usuario usuario, Model model) {
-        Map<String,String> atributoErro = usuarioService.salvar(usuario);  
+    public String salvar(CadastroUsuarioRequest request, Model model) {
+        Map<String,String> atributoErro = usuarioService.salvar(request);  
         if(!atributoErro.isEmpty()) {
             model.addAttribute("erros", atributoErro);
-            model.addAttribute("username", usuario.getUsername());
-            model.addAttribute("senha", usuario.getSenha());
+            model.addAttribute("username", request.username());
+            model.addAttribute("senha", request.senha());
 
             return "cadastro.html";
         } else {
@@ -62,15 +66,16 @@ public class UsuarioController {
         return "login.html";
     }
 
+    @ParaLogar
     @PostMapping("/login")
-    public String realizarLogin(Usuario usuario, Model model) {
-        Map<String,String> atributoErro = usuarioService.realizarLogin(usuario);
+    public String realizarLogin(LoginUsuarioRequest request, Model model) {
+        Map<String,String> atributoErro = usuarioService.realizarLogin(request);
         if(!atributoErro.isEmpty()) {
             model.addAttribute("erros", atributoErro);
 
             return "login.html";
         } else {
-            usuarioSession.setUsername(usuario.getSenha());
+            usuarioSession.setUsername(request.senha());
 
             return "redirect:/dashboard";
         }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import piazada.todolist.aop.ParaLogar;
 import piazada.todolist.models.Tarefa;
 import piazada.todolist.services.TarefaService;
 import piazada.todolist.session.UsuarioSession;
@@ -40,6 +41,7 @@ public class TarefaController {
         }
     }
 
+    @ParaLogar
     @PostMapping("/salvar")
     public String salvar(Tarefa tarefa, Model model) {
         if(usuarioSession.getUsername() == null) {
@@ -54,6 +56,7 @@ public class TarefaController {
         }
     }
 
+    @ParaLogar
     @PostMapping("/concluir")
     public String concluir(@RequestParam Long id) {
         if(usuarioSession.getUsername() == null) {
